@@ -51,9 +51,36 @@ customAdd(using: { (num1: Int, num2: Int) -> Int in
     num1 + num2
 }, 5, 2)
 
-//MARK: - SPECIAL CLOSURES
+//MARK: - SPECIAL CLOSURES (PASSING OPERATORS TO CLOSURES)
 let ages: [Int] = [30, 20, 19, 40]
-///Descending if num1 > num2&  Ascending if num1 < num2
+///Descending if num1 > num2 & Ascending if num1 < num2
+///Maksudnya adalah Jika num1 LEBIH KECIL dari num2 = FALSE maka Tukar posisi num2 ke index elemen yang lebih depan.
+///Jika num1 LEBIH BESAR dari num2 maka Tukar posisi = TRUE maka Tukar posisi num1 ke index elemen yang lebih depan.
 ages.sorted(by: {(num1: Int, num2: Int) -> Bool in
-    num1 < num2
+    num1 > num2
 })
+
+///Bisa juga ditulis seperti ini
+ages.sorted(by: <)
+ages.sorted(by: >)
+
+//MARK: - CLOSURES INSIDE A FUNCTION
+func add10To(_ value: Int) -> Int {
+    value + 10
+}
+
+func add20To(_ value: Int) -> Int {
+    value + 20
+}
+
+///Using function of a Clsoure that Input an Integer and return an Integer
+func doAddition(on value: Int, using function: (Int) -> Int) -> Int {
+    function(value) ///Invoking function with the value (on label)
+}
+
+///Maksud dari code dibawah ini adalah Panggil function doAddition() dengan value (on label) = 20, dan
+///Invoke 20 tersebut ke dalam Closures Function dengan label using ke normal function add10To() / add20To()
+///Yang dimana akan mengambil value 20 tadi dan mengeksekusi / return pada Scope dari masing-masing normal function tersebut
+///value + 10 atau value + 20
+doAddition(on: 20, using: add10To(_:))
+doAddition(on: 20, using: add20To(_:))
