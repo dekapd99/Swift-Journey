@@ -32,13 +32,13 @@ prefix func ^ (value: String) -> String {
 let lowercaseName = "Deka Primatio"
 let uppercaseName = ^lowercaseName
 
-//Result must be: *** deka primatio ***
+//Result must be: *** DEKA PRIMATIO ***
 postfix operator *
 postfix func * (value: String) -> String {
     "*** \(value) ***"
 }
 
-let withStars = lowercaseName*
+let withStars = uppercaseName*
 
 struct Person {
     let name: String
